@@ -1,0 +1,106 @@
+﻿@{
+	Layout = "_LayoutMain";
+}
+@model BlogListDto
+
+<div class="container mt-5 py-5">
+	<div class="row">
+		<div class="col-12">
+			<h4 style="word-wrap: break-word; font-size: bold;">@Model.Title</h4>
+			<div class="my-5">
+				<p class="lead">
+					@Html.Raw(Model.Content)
+				</p>
+			</div>
+
+			<h6>Yorumlar</h6>
+			<div>
+				@if (Model.Comments.Count > 0)
+				{
+
+					<ul>
+						@foreach (var item in Model.Comments)
+						{
+
+							<li>
+								<p>@item.AppUser.UserName</p>
+
+								<p class="lead">
+									@item.Content
+								</p>
+							</li>
+						}
+
+					</ul>
+				}
+				else
+				{
+					<span>Yorum Yapılmamış</span>
+				}
+				@*dto su hazırlanıcak*@
+				@if (User.Identity.IsAuthenticated)
+				{
+					<h6 class="mt-5">Yorum Yap</h6>
+
+					<form method="post" asp-action="CommentCreate" asp-controller="Home">
+						<input type="text" name="Content" />
+						<input type="hidden" name="UserId" value="@Model.AppUserId" />
+						<input type="hidden" name="BlogId" value="@Model.Id" />
+						<input type="submit" class="btn btn-primary mt-1" />
+					</form>
+				}
+				else
+				{
+					<p>
+						Yorum Yapmak için giriş yapınız.
+					</p>
+				}
+
+			</div>
+
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				Yorum Yap
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							...
+							<p>
+								lorem ipsum dolor sit amet
+								<form>
+									<input id="myInput" type="text" value="zort" />
+								</form>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<script>
+	const myModal = document.getElementById('exampleModal')
+	const myInput = document.getElementById('myInput')
+
+	myModal.addEventListener('shown.bs.modal', () => {
+		myInput.focus()
+	})
+</script>

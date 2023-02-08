@@ -1,0 +1,238 @@
+﻿
+@model BlogHomePageDto
+@{
+	Layout = "_Layout";
+}
+
+@section Head {
+	<title>Document</title>
+}
+	<div class="bg-yellow border-bottom-dark py-1 fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-brand" asp-action="Index" asp-controller="Home">
+					<strong>Medium</strong>
+				</a>
+				<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse ml-auto" id="navbarNav">
+					<ul class="navbar-nav ml-auto">
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item active">
+							<a class="nav-link" asp-action="Create" asp-controller="Home">Create<span class="sr-only">(current)</span></a>
+						</li>
+						
+
+					}
+					@if (!User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item">
+							<a class="nav-link" asp-action="SignIn" asp-controller="Account">Login</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-action="Create" asp-controller="Account">SignUp</a>
+						</li>
+					}
+
+					<li class="nav-item">
+						<a class="nav-link" asp-action="OurStory" asp-controller="NonUser">Our Story</a>
+					</li>
+					@if (User.Identity.IsAuthenticated)
+					{
+
+						<li class="nav-item">
+							<a class="nav-link" asp-action="LogOut" asp-controller="Account">Log Out</a>
+						</li>
+					}
+					<li class="nav-item ml-3">
+						<a class="nav-link btn btn-dark text-light rounded-pill" asp-action="SignIn" asp-controller="Account">Get Started</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+
+
+
+<div class="bg-yellow py-5 border-bottom-dark">
+	<div class="container">
+		<div class="row ">
+			<div class="col-sm-6 mt-3">
+				<h1 class="display-2">
+					Stay curious.
+				</h1>
+				<p class="lead">
+					Discover stories, thinking, and expertise from writers on any topic.
+
+					<a href="#" class="text-dark ">
+						<u> Learn more</u>
+					</a>
+				</p>
+				<a asp-action="SignIn" asp-controller="Account" class="btn btn-dark rounded-pill " style="margin-top: 5%;">Start reading</a>
+			</div>
+			<div class="col-sm-6">
+				<img src="https://picsum.photos/300/300" alt="" class="rounded-circle float-right">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-12 mb-2 ">
+			<h6>
+				<i class="fa-solid fa-arrow-trend-up"></i> <small class="ml-2">TRENDING ON MEDIUM</small>
+			</h6>
+		</div>
+		@for (int i = 0; i < Model.TrendingBlogs.Count; i++)
+		{
+
+			<article class="col-sm-4 mb-2">
+				<div class="row">
+					<div class="col-1">
+						<h6 class="text-black-50"><strong>@(i < 10 ? $"0{i + 1}" : i + 1)</strong></h6>
+					</div>
+					<div class="col-11">
+						<img class="rounded-circle" src="https://picsum.photos/id/@Model.TrendingBlogs[i].AppUserId/25/25" alt="">
+						<span class="small ml-1">
+							@Model.TrendingBlogs[i].AppUser.UserName  @*yazar*@
+
+						</span>
+
+						<a asp-action="Detail" asp-controller="Home" asp-route-id="@Model.TrendingBlogs[i].Id" class="text-dark text-decoration-none"><h6 class="mt-2"><strong> @Model.TrendingBlogs[i].Title</strong></h6></a> @*başlık*@
+						<ul class="list-inline small">
+							<li class="list-inline-item">Jul 13</li>
+							<li class="list-inline-item">35 min read</li>
+							<li class="list-inline-item">
+								<i class="fa-regular fa-star"></i>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</article>
+		}
+
+	</div>
+
+</div> <!-- container - end -->
+
+<div class="border-top-dark mt-5">
+	<div class="container">
+		<div class="row mt-5 ">
+			<section class="col-sm-8">
+				@for (int i = 0; i < Model.HomePageBlogs.Count; i++)
+				{
+					<article class="row mb-3">
+						<div class="col-8">
+							<img class="rounded-circle" src="https://picsum.photos/id/@Model.HomePageBlogs[i].AppUserId/25/25" alt="">
+							<span class="small ml-1">@Model.HomePageBlogs[i].AppUser.UserName </span>
+							<a asp-action="Detail" asp-controller="Home" asp-route-id="@Model.HomePageBlogs[i].Id" class="text-dark text-decoration-none">
+								<h5 class="mt-2">
+									<strong class="mr-2" style="word-wrap: break-word">
+										@{
+											string title = "";
+											if (Model.HomePageBlogs[i].Title.Length > 50)
+											{
+												//@Html.Display(Model.HomePageBlogs[i].Title.Substring(0, 50))
+												title = Model.HomePageBlogs[i].Title.Substring(0, 50) + " ...";
+											}
+											else
+											{
+												//@Html.Display(Model.HomePageBlogs[i].Title.Substring(0, Model.HomePageBlogs[i].Title.Length))
+
+												title = Model.HomePageBlogs[i].Title.Substring(0, Model.HomePageBlogs[i].Title.Length);
+											}
+										}
+										@(title)
+									</strong>
+								</h5>
+							</a>
+							<p style="word-wrap: break-word;">
+								@*@Html.Raw(Model.HomePageBlogs[i].Content.Substring(0,(Model.HomePageBlogs[i].Content.Length > 42) ? 42 : Model.HomePageBlogs[i].Content.Length))*@
+								@*@HtmlEncoder.Default.Encode(Model.HomePageBlogs[i].Content.Substring(0,(Model.HomePageBlogs[i].Content.Length > 42) ? 42 : Model.HomePageBlogs[i].Content.Length))*@
+								@{
+									var truncatedHtml = Regex.Replace(Model.HomePageBlogs[i].Content, "<.*?>", string.Empty);
+								}
+								@(truncatedHtml.Substring(0, Math.Min(truncatedHtml.Length, 100)) + " ...")
+
+								@*// kapanma tagi kesildiği için yarım kalıyor*@
+								@*@item.Description.ToString().Substring(0, (item.Description.Length > 10) ? 10 : item.Description.Length )*@
+							</p>
+							<ul class="list-inline small">
+								<li class="list-inline-item">Jul 13</li>
+								<li class="list-inline-item">35 min read</li>
+								<li class="list-inline-item">
+									<i class="fa-regular fa-star"></i>
+								</li>
+							</ul>
+						</div>
+						<div class="col-4">
+							<img src="https://picsum.photos/id/@Model.HomePageBlogs[i].Id/400/250" alt="" class="w-100">
+						</div>
+					</article>
+				}
+			</section>
+			<aside class="col-sm-4">
+				<h6>
+					<small><strong>DISCOVER MORE OF WHAT MATTERS TO YOU</strong></small>
+				</h6>
+				<ul class="list-inline aside-buttons">
+					@foreach (var item in Model.Categories)
+					{
+
+						<li class="list-inline-item">
+							<a asp-action="BlogsThatIncludesCategory" asp-controller="Home" asp-route-categoryId="@item.Id" class="btn btn-sm btn-outline-secondary">@item.Title</a>
+						</li>
+					}
+
+				</ul>
+			</aside>
+
+		</div>
+	</div>
+</div>
+<div>
+	<h1>
+		Lets check it out
+	</h1>
+
+	<p>
+		@{
+
+			//string html = "<p>MY p tag split from here : asdasjdasdjajsdjasd</p>";
+			string html = Model.HomePageBlogs[2].Content;
+			HtmlDocument doc = new HtmlDocument();
+			doc.LoadHtml(html);
+			int maxCharacters = 1;
+
+			int currentCharacterCount = 0;
+			foreach (HtmlNode node in doc.DocumentNode.ChildNodes)
+			{
+				currentCharacterCount += node.InnerText.Length;
+				if (currentCharacterCount >= maxCharacters)
+				{
+					node.Remove();
+					break;
+				}
+			}
+
+			string truncatedHtml2 = doc.DocumentNode.OuterHtml;
+		}
+		@truncatedHtml2
+
+
+
+	</p>
+
+
+</div>
+
+
+<script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/node_modules/jquery/dist/jquery.slim.min.js"></script>

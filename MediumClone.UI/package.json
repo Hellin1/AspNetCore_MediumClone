@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+    "devDependencies": {
+        "bootstrap": "4.6.2",
+        "jquery": "3.6.1",
+        "fontawesome-free": "1.0.4",
+        "bootstrap-icons": "1.9.1"
+
+    }
+}

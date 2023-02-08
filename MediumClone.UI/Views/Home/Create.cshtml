@@ -1,0 +1,43 @@
+﻿@model BlogCreateDto
+@{
+	Layout = "_LayoutMain";
+}
+
+<div class="container">
+	<form method="post" asp-action="Create" asp-controller="Home" class="py-5">
+		<input type="hidden" name="AppUserId" value="@Model.AppUserId" />
+		<label>Title</label>
+		<input type="text" name="title" class="form-control" />
+		<br />
+		<label>Content</label>
+		<textarea type="text" asp-for="@Model.Content" style="height: 60vh" class="form-control" text-wrap:normal>
+		</textarea>
+
+
+		<select name="SelectedCategories" class="form-control mt-2" multiple>
+			@foreach (var category in Model.Categories)
+			{
+				<option value="@category.Id">@category.Title</option>
+
+			}
+		</select>
+
+		<div asp-validation-summary="ModelOnly" class="text-danger my-2"></div>
+		<input type="submit" class="btn btn-primary mt-2" value="Yayınla"/>
+	</form>
+</div>
+
+@section script{
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/trumbowyg.min.js" integrity="sha512-ZfWLe+ZoWpbVvORQllwYHfi9jNHUMvXR4QhjL1I6IRPXkab2Rquag6R0Sc1SWUYTj20yPEVqmvCVkxLsDC3CRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		$(document).ready(function () {
+			$("#Content").trumbowyg();
+		})
+	</script>
+}
+
+	@section css{
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/ui/trumbowyg.min.css" integrity="sha512-Zi7Hb6P4D2nWzFhzFeyk4hzWxBu/dttyPIw/ZqvtIkxpe/oCAYXs7+tjVhIDASEJiU3lwSkAZ9szA3ss3W0Vug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}

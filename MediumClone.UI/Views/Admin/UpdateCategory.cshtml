@@ -1,0 +1,15 @@
+﻿@{
+	Layout = "_LayoutAdmin";
+}
+
+
+@model CategoryUpdateDto
+
+<div class="container">
+	<form asp-action="UpdateCategory" asp-controller="Admin" class="mt-5 py-5" method="post">
+		<label for="@Model.Title">Category İsmi</label>
+		<input type="hidden" asp-for="@Model.Id" />
+		<input type="text" asp-for="@Model.Title" class="form-control" />
+		<input type="submit" class="btn btn-primary mt-2" value="Güncelle" />
+	</form>
+</div>

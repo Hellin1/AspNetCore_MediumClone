@@ -1,0 +1,37 @@
+﻿@model List<BlogListDto>
+@{
+	Layout = "_LayoutMain";
+}
+<h3 class="mt-5 ml-3">@ViewBag.Category.Title</h3>
+
+
+@if (Model.Count < 1){
+	<p>Bu kategoride yazılmış blog bulunmamaktadır.</p>
+}
+
+
+<div class="container">
+	@for (int i = 0; i < Model.Count; i++)
+	{
+		<article class="border-top  py-3 mt-2">
+			<div class="row">
+				<div class="col-7">
+					<h5 style="word-break: break-word;">@Model[i].Title</h5>
+					<p style="word-break: break-word;">
+
+						@{
+							var truncatedHtml = Regex.Replace(Model[i].Content, "<.*?>", string.Empty);
+						}
+
+						@(truncatedHtml.Substring(0, Math.Min(truncatedHtml.Length, 100)) + " ...")
+
+					</p>
+				</div>
+				<div class="col-3 offset-sm-1">
+					<img src="https://picsum.photos/id/@Model[i].Id/400/250" alt="" class="w-100">
+				</div>
+			</div>
+
+		</article>
+	}
+</div>

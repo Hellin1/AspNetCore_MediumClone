@@ -1,0 +1,39 @@
+﻿@model AppUserCreateDto
+@{
+	Layout = "_Layout";
+}
+
+<div class="container">
+
+<form asp-action="Create" method="post" class="p-4 w-75 mx-auto shadow py-5">
+	<div class="mb-3">
+		<label>Kullanıcı Adı: </label>
+		<span class="text-danger" asp-validation-for="@Model.Username"></span>
+		<input asp-for="@Model.Username" class="form-control" />
+	</div>
+	<div class="mb-3">
+		<label>Şifre : </label>
+		<span class="text-danger" asp-validation-for="@Model.Password"></span>
+		<input type="password" asp-for="@Model.Password" class="form-control" />
+	</div>
+	<div class="mb-3">
+		<label>Şifre Tekrar : </label>
+		<span class="text-danger" asp-validation-for="@Model.ConfirmPassword"></span>
+		<input type="password" asp-for="@Model.ConfirmPassword" class="form-control" />
+	</div>
+	<div class="mb-3">
+		<label>Email : </label>
+		<span class="text-danger" asp-validation-for="@Model.Email"></span>
+		<input type="email" asp-for="@Model.Email" class="form-control" />
+	</div>
+
+	<div class="mb-3">
+		<button type="submit" class="btn btn-primary">
+			Kaydol
+		</button>
+	</div>
+
+	<div class="text-danger mt-2" asp-validation-summary="ModelOnly">
+	</div>
+</form>
+</div>

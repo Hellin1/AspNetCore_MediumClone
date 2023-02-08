@@ -1,0 +1,43 @@
+﻿@model List<CategoryListDto>
+@{
+	Layout = "_LayoutAdmin";
+}
+
+
+@*kategori arama*@
+<label>Kategori Ara</label>
+<form asp-action="Categories" asp-controller="Admin">
+	<input class="form-control" type="search" name="searchWord" />
+</form>
+
+
+@*butun kategoriler*@
+
+<h3 class="text-center mt-5">Kategoriler</h3>
+
+@if (ViewBag.searchWord != null){
+	<h3>@ViewBag.searchWord  arama sonuçları</h3>
+}
+
+<div class="mt-5">
+	<ul>
+		@for (int i = 0; i < Model.Count; i++)
+		{
+			<li class="btn btn-outline-dark ml-5 mr-5 mb-4 text-dark">
+				<a class="mr-2" asp-action="BlogsThatIncludesCategory" asp-controller="Home" asp-route-categoryId="@Model[i].Id">@Model[i].Title</a><a asp-action="UpdateCategory" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Düzenle</a> <a asp-action="RemoveCategory" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Sil</a>
+			</li>
+		}
+	</ul>
+</div>
+
+
+@*kategori1 Düzenle Sil*@
+
+
+
+@*kategori oluştur*@
+<div class="d-flex justify-content-center">
+	<a class="btn btn-dark text-white" style="width:15%" asp-action="CreateCategory" asp-controller="Admin">Kategori Oluştur<span class="sr-only">(current)</span></a>
+</div>
+
+
