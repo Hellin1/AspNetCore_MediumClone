@@ -12,6 +12,7 @@ namespace MediumClone.Business.ValidationRules
     {
         public CategoryUpdateDtoValidator()
         {
+            RuleFor(x => x.Title).NotEmpty();
         }
     }
 }

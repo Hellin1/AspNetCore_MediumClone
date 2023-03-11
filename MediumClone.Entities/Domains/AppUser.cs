@@ -13,10 +13,10 @@ namespace MediumClone.Entities.Domains
 
         public string Gender { get; set; }
 
-        // blogs
+      
         public List<Blog> Blogs { get; set; }
 
-        // comments
+      
         public List<Comment> Comments { get; set; }
 
     }

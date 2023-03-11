@@ -16,13 +16,10 @@ namespace MediumClone.Entities.Domains
 
         public DateTime? UpdatedTime { get; set; }
 
-        // navigation props
-
         public List<BlogCategory> BlogCategories { get; set; }
 
         public List<Comment> Comments { get; set; }
-
-        // user
+     
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

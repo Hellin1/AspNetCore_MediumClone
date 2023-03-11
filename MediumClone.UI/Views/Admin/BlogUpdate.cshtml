@@ -4,8 +4,6 @@
 }
 
 
-
-
 <div class="container">
 	<form method="post" asp-action="BlogUpdate" asp-controller="Admin" class="py-5">
 		<input type="hidden" name="AppUserId" value="@Model.AppUserId" />
@@ -26,21 +24,7 @@
 			}
 		</select>
 
-		@*<select name="SelectedCategories" class="form-control mt-2"  multiple>
-			@foreach (var kategori in Model?.Categories)
-			{
-				if (kategori.ToString().Contains(kategori.Value))
-				{
-					<option value="@kategori.Value" selected>@kategori.Text</option>
-				}
-				else
-				{
-					<option value="@kategori.Value">@kategori.Text</option>
-				}
-			}
-
-		</select>
-*@
+		
 
 		<div asp-validation-summary="ModelOnly" class="text-danger my-2"></div>
 		<input type="submit" class="btn btn-primary mt-2" value="Yayınla" />
@@ -58,6 +42,6 @@
 	</script>
 }
 
-	@section css{
+@section css{
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/ui/trumbowyg.min.css" integrity="sha512-Zi7Hb6P4D2nWzFhzFeyk4hzWxBu/dttyPIw/ZqvtIkxpe/oCAYXs7+tjVhIDASEJiU3lwSkAZ9szA3ss3W0Vug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }

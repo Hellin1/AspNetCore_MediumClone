@@ -11,8 +11,6 @@ namespace MediumClone.Business.Interfaces
 {
     public interface IBlogService : IService<BlogCreateDto, BlogUpdateDto, BlogListDto, Blog>
     {
-        // gonna change
-
 
         Task<List<BlogListDto>> GetBlogsOrdered<Tkey>(Expression<Func<Blog, Tkey>> selector, string searchword, bool ad = false);
 
@@ -29,8 +27,6 @@ namespace MediumClone.Business.Interfaces
         Task<BlogListDto> GetRelationalDataById(int id);
 
         Task Create(BlogCreateDto dto);
-
-        Task CategoryCreate(CategoryCreateDto dto);
 
         Task<BlogHomePageDto> GetAllHomePage();
     }

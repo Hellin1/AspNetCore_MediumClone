@@ -48,10 +48,6 @@ namespace MediumClone.UI.Controllers
             };
             return View(model);
 
-            //var result = _blogService.Filter(searchWord);
-            //ViewBag.searchWord = searchWord;
-            //return View(result.Data);
-            //return View();
         }
 
 
@@ -61,12 +57,7 @@ namespace MediumClone.UI.Controllers
             var categories = await _categoryService.GetAllAsync();
             var dto = _mapper.Map<BlogAdminUpdateModel>(blog);
 
-            //ViewBag.categories = _categoryService.GetAllAsync();
-            // tüm kategorilerin viewbag e atılması daha sonra model contains ile var ise checked olması
-
             dto.Categories = new SelectList(categories.Data, "Categories.Id", "Categories.Title");
-
-           
 
             return View(dto);
         }
@@ -76,7 +67,7 @@ namespace MediumClone.UI.Controllers
         public IActionResult BlogUpdate(BlogUpdateDto dto)
         {
             _blogService.UpdateAsync(dto);
-            return RedirectToAction("UpdateBlog", new { blogId = dto.Id });
+            return RedirectToAction("Blogs");
         }
 
 

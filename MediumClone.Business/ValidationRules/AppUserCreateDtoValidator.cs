@@ -11,8 +11,10 @@ namespace MediumClone.Business.ValidationRules
     public class AppUserCreateDtoValidator : AbstractValidator<AppUserCreateDto>
     {
         public AppUserCreateDtoValidator()
-        { // gonna change
-
+        {
+            RuleFor(x => x.Password).NotEmpty();
+            RuleFor(x => x.ConfirmPassword).NotEmpty();
+            RuleFor(x => x.Username).NotEmpty();
         }
     }
 }

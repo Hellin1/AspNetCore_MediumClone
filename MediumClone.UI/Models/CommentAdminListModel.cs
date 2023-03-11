@@ -15,11 +15,10 @@ namespace MediumClone.UI.Models
 
         public DateTime? UpdatedTime { get; set; }
 
-        // navigation props
         public int BlogId { get; set; }
 
         public Blog Blog { get; set; }
-        // user
+
         public int AppUserId { get; set; }
 
         public AppUser AppUser { get; set; }

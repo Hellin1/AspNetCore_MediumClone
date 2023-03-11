@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MediumClone.Dtos.NlogDtos
 {
     public class BlogListDto : IDto
-    { // gonna change
+    { 
         public int Id { get; set; }
 
         public string Title { get; set; }

@@ -41,9 +41,6 @@ namespace MediumClone.Business.Services
 
         }
 
-        // IUow uow, IValidator<CreateDto> createDtoValidator, IValidator<UpdateDto> updateDtoValidator, IMapper mapper
-
-
 
         public async Task CreateComment(CommentCreateDto dto)
         {
@@ -87,14 +84,6 @@ namespace MediumClone.Business.Services
             var result = _updateDtoValidator.Validate(dto);
             if (result.IsValid)
             {
-                //var unchangedData = await _uow.GetRepository<Comment>().GetById(dto.Id);
-                //public async Task<Blog> GetRelationalDataById(Expression<Func<Blog, bool>> filter)
-                //{
-                //    return await _context.Blogs.Include(x => x.Comments).ThenInclude(x => x.AppUser).AsNoTracking().SingleOrDefaultAsync(filter);
-                //}
-
-
-
                 var unchangedData =await  _uow.GetRepository<Comment>().GetQuery().Include(x => x.AppUser).Include(x => x.Blog).ThenInclude(x => x.AppUser).ThenInclude(x => x.Blogs).SingleOrDefaultAsync(x => x.Id == dto.Id);
 
                 if (unchangedData == null)
@@ -102,10 +91,6 @@ namespace MediumClone.Business.Services
                 unchangedData.UpdatedTime = DateTime.Now;
                 unchangedData.Content = dto.Content;
 
-                //var entity = _mapper.Map<Comment>(dto);
-
-
-                //_uow.GetRepository<Comment>().Update(entity, unchangedData);
                 await _uow.SaveChanges();
                 return new Response<CommentUpdateDto>(ResponseType.Success, dto);
             }

@@ -16,9 +16,7 @@ namespace MediumClone.UI.Models
         public string Content { get; set; }
 
 
-        public DateTime? UpdatedTime { get; set; } = DateTime.Now;
-
-        // navigation props
+        public DateTime UpdatedTime { get; set; } = DateTime.Now;
 
         public List<BlogCategory> BlogCategories { get; set; }
 
@@ -26,7 +24,6 @@ namespace MediumClone.UI.Models
 
         public List<Comment> Comments { get; set; }
 
-        // user
         public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }

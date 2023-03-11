@@ -31,16 +31,6 @@ namespace MediumClone.Business.DependencyResolvers.Microsoft
 				opt.UseSqlServer(configuration.GetConnectionString("Local"));
 				opt.LogTo(Console.WriteLine, LogLevel.Information);
 			});
-			//var mapperConfiguration = new MapperConfiguration(opt =>
-			//{
-			//	opt.AddProfile(new BlogProfile());
-			//	opt.AddProfile(new CategoryProfile());
-			//	opt.AddProfile(new CommentProfile());
-			//});
-
-			//var mapper = mapperConfiguration.CreateMapper();
-			//services.AddSingleton(mapper);
-
 
 			services.AddIdentity<AppUser, AppRole>(opt =>
 			{
@@ -73,9 +63,6 @@ namespace MediumClone.Business.DependencyResolvers.Microsoft
 			services.AddTransient<IBlogService, BlogService>();
 			services.AddScoped<ICommentService, CommentService>();
 			services.AddScoped<ICategoryService, CategoryService>();
-
-			//services.AddTransient<IValidator<AppUserCreateDto> AppUserCreateDtoValidator>();	
-
 		}
 	}
 }

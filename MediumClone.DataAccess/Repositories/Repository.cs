@@ -36,8 +36,6 @@ namespace MediumClone.DataAccess.Repositories
             return asNoTracking ? await _context.Set<T>().SingleOrDefaultAsync(filter) : await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        //public async Task<T> GetByFilter 
-
         public async Task<T> GetById(object id)
         {
             return await _context.Set<T>().FindAsync(id);
@@ -70,10 +68,5 @@ namespace MediumClone.DataAccess.Repositories
         {
             return await _context.Blogs.Include(x => x.Comments).ThenInclude(x => x.AppUser).AsNoTracking().SingleOrDefaultAsync(filter);
         }
-
-        //public async Task<Blog> GetRelatioalDataByIdWithCategory(Expression<Func<Blog, bool>> filter)
-        //{
-        //    return await _context.Categories.Include(x => x.Comments).ThenInclude(x => x.AppUser).AsNoTracking().SingleOrDefaultAsync(filter);
-        //}
     }
 }
