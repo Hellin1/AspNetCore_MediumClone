@@ -1,4 +1,4 @@
-﻿@model BlogUpdateDto
+﻿@model BlogAdminUpdateModel
 @{
 	Layout = "_LayoutAdmin";
 }
@@ -7,11 +7,11 @@
 
 
 <div class="container">
-	<form method="post" asp-action="BlogUpdate2" asp-controller="Admin" class="py-5">
+	<form method="post" asp-action="BlogUpdate" asp-controller="Admin" class="py-5">
 		<input type="hidden" name="AppUserId" value="@Model.AppUserId" />
 		<input type="hidden" asp-for="@Model.Id" />
 		<label>Title</label>
-		<input type="text" name="title" class="form-control" />
+		<input type="text" name="title" class="form-control" value="@Model.Title" />
 		<br />
 		<label>Content</label>
 		<textarea type="text" asp-for="@Model.Content" style="height: 60vh" class="form-control" text-wrap:normal>
@@ -25,6 +25,22 @@
 
 			}
 		</select>
+
+		@*<select name="SelectedCategories" class="form-control mt-2"  multiple>
+			@foreach (var kategori in Model?.Categories)
+			{
+				if (kategori.ToString().Contains(kategori.Value))
+				{
+					<option value="@kategori.Value" selected>@kategori.Text</option>
+				}
+				else
+				{
+					<option value="@kategori.Value">@kategori.Text</option>
+				}
+			}
+
+		</select>
+*@
 
 		<div asp-validation-summary="ModelOnly" class="text-danger my-2"></div>
 		<input type="submit" class="btn btn-primary mt-2" value="Yayınla" />

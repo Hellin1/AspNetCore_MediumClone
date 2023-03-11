@@ -24,7 +24,7 @@
 		@for (int i = 0; i < Model.Count; i++)
 		{
 			<li class="btn btn-outline-dark ml-5 mr-5 mb-4 text-dark">
-				<a class="mr-2" asp-action="BlogsThatIncludesCategory" asp-controller="Home" asp-route-categoryId="@Model[i].Id">@Model[i].Title</a><a asp-action="UpdateCategory" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Düzenle</a> <a asp-action="RemoveCategory" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Sil</a>
+				<a class="mr-2" asp-action="BlogsThatIncludesCategory" asp-controller="Home" asp-route-categoryId="@Model[i].Id">@Model[i].Title</a><a asp-action="CategoryUpdate" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Düzenle</a> <a asp-action="CategoryRemove" asp-controller="Admin" asp-route-categoryId="@Model[i].Id">Sil</a>
 			</li>
 		}
 	</ul>
@@ -37,7 +37,7 @@
 
 @*kategori oluştur*@
 <div class="d-flex justify-content-center">
-	<a class="btn btn-dark text-white" style="width:15%" asp-action="CreateCategory" asp-controller="Admin">Kategori Oluştur<span class="sr-only">(current)</span></a>
+	<a class="btn btn-dark text-white" style="width:15%" asp-action="CategoryCreate" asp-controller="Admin">Kategori Oluştur<span class="sr-only">(current)</span></a>
 </div>
 
 

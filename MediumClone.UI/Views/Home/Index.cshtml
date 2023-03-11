@@ -161,6 +161,7 @@
 								}
 								@(truncatedHtml.Substring(0, Math.Min(truncatedHtml.Length, 100)) + " ...")
 
+
 								@*// kapanma tagi kesildiği için yarım kalıyor*@
 								@*@item.Description.ToString().Substring(0, (item.Description.Length > 10) ? 10 : item.Description.Length )*@
 							</p>
@@ -197,7 +198,7 @@
 		</div>
 	</div>
 </div>
-<div>
+@*<div>
 	<h1>
 		Lets check it out
 	</h1>
@@ -231,7 +232,7 @@
 	</p>
 
 
-</div>
+</div>*@
 
 
 <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

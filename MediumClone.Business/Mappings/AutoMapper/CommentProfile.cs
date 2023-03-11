@@ -14,6 +14,8 @@ namespace MediumClone.Business.Mappings.AutoMapper
         public CommentProfile()
         {
             CreateMap<Comment, CommentCreateDto>().ReverseMap();
+            CreateMap<Comment, CommentUpdateDto>().ReverseMap();
+            CreateMap<Comment, CommentListDto>().ReverseMap();
         }
     }
 }

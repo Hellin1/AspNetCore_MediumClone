@@ -4,9 +4,9 @@
 @model CategoryCreateDto
 
 <div class="container">
-	<form asp-action="CreateCategory" asp-controller="Admin" class="mt-5 py-5" method="post">
+	<form asp-action="CategoryCreate" asp-controller="Admin" class="mt-5 py-5" method="post">
 		<label for="@Model.Title">Category İsmi</label>
 		<input type="text" asp-for="@Model.Title" class="form-control" />
-		<input type="submit" class="btn btn-primary mt-2" value="Oluştur"/>
+		<input type="submit" class="btn btn-dark mt-2" value="Oluştur"/>
 	</form>
 </div>

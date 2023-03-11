@@ -1,28 +1,28 @@
-﻿using MediumClone.Dtos.Interfaces;
-using MediumClone.Entities.Domains;
-using System;
+﻿using MediumClone.Entities.Domains;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MediumClone.Dtos.Interfaces;
 
-namespace MediumClone.Dtos.NlogDtos
+namespace MediumClone.UI.Models
 {
-    public class BlogListDto : IDto
-    { // gonna change
+    public class BlogAdminUpdateModel : IDto
+    {
+
         public int Id { get; set; }
 
         public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public DateTime CreatedTime { get; set; }
 
-        public DateTime? UpdatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; } = DateTime.Now;
 
         // navigation props
 
         public List<BlogCategory> BlogCategories { get; set; }
+
+        public SelectList Categories { get; set; }
 
         public List<Comment> Comments { get; set; }
 

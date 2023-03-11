@@ -50,6 +50,7 @@ namespace MediumClone.DataAccess.Repositories
 
         public void Update(T entity, T unchanged)
         {
+          
             //_context.Set<T>().Update(entity);
             _context.Entry(unchanged).CurrentValues.SetValues(entity);
         }
@@ -69,5 +70,10 @@ namespace MediumClone.DataAccess.Repositories
         {
             return await _context.Blogs.Include(x => x.Comments).ThenInclude(x => x.AppUser).AsNoTracking().SingleOrDefaultAsync(filter);
         }
+
+        //public async Task<Blog> GetRelatioalDataByIdWithCategory(Expression<Func<Blog, bool>> filter)
+        //{
+        //    return await _context.Categories.Include(x => x.Comments).ThenInclude(x => x.AppUser).AsNoTracking().SingleOrDefaultAsync(filter);
+        //}
     }
 }

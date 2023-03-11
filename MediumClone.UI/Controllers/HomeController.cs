@@ -46,13 +46,13 @@ namespace MediumClone.UI.Controllers
 
             var blogCreateDto = new BlogCreateDto();
             var blogCategories = new List<BlogCategory>();
-            var categories = await _blogService.GetAllCategory();
+            var categories = await _categoryService.GetAllAsync();
             var categories2 = new List<CategoryListDto>()
             {
 
             };
 
-            foreach (var category in categories)
+            foreach (var category in categories.Data)
             {
                 categories2.Add(new()
                 {
@@ -93,14 +93,14 @@ namespace MediumClone.UI.Controllers
             var blog = await _blogService.GetRelationalDataById(id);
             return View(blog);
         }
-
-        public IActionResult CreateCategory()
+        [Authorize]
+        public IActionResult CategoryCreate()
         {
             return View(new CategoryCreateDto());
         }
 
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CommentCreate(CommentCreateDto dto)
         {

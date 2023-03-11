@@ -13,7 +13,7 @@ namespace MediumClone.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasMany(x => x.BlogCategories).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
+            //builder.HasMany(x => x.BlogCategories).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
             builder.Property(x => x.Title).IsRequired();
         }
     }

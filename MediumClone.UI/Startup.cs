@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediumClone.Business.DependencyResolvers.Microsoft;
 using MediumClone.Business.Helpers;
+using MediumClone.UI.Mappings.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,12 +32,14 @@ namespace MediumClone.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
-        //                          neden?
+        
             services.AddDependencies(Configuration);
             services.AddControllersWithViews();
 
             var profiles = ProfileHelper.GetProfiles();
             // ui dan gelecek profile lar profiles a eklenicek
+            profiles.Add(new CommentModelProfile());
+            profiles.Add(new BlogModelProfile());
 
             var configuration = new MapperConfiguration(opt =>
             {

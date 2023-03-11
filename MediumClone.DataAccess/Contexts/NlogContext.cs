@@ -30,6 +30,7 @@ namespace MediumClone.DataAccess.Contexts
             modelBuilder.ApplyConfiguration(new BlogCategoryConfigurations());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new CommentConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

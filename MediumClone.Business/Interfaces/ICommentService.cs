@@ -12,5 +12,11 @@ namespace MediumClone.Business.Interfaces
     public interface ICommentService : IService<CommentCreateDto, CommentUpdateDto, CommentListDto, Comment>
     {
         Task CreateComment(CommentCreateDto dto);
+
+        Task<List<CommentListDto>> GetComments();
+
+        Task<String> GetCount();
+
+        Task<IResponse<CommentUpdateDto>> UpdateComment(CommentUpdateDto dto);
     }
 }

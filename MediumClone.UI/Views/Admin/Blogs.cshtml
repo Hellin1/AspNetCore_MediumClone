@@ -7,14 +7,14 @@
 	<input class="form-control" type="search" name="searchWord" />
 </form>
 
-<div class="container-fluid mt-5 ">
-	<div class="row">
+<div class="container-fluid mt-5 text-dark">
+	<div class="row text-dark">
 		<div class="col-6">
 			<h3 class="mb-4 text-center">Son Oluşturulan Bloglar</h3>
 			<ul class="list-unstyled">
 				@for (int i = 0; i < Model.LatestBlogs.Count; i++)
 				{
-					<li class="" style="width:100%;"><div class="row"><div class="col-8" style="overflow: hidden"> <a class="" style="overflow: hidden" asp-action="Detail" asp-controller="Home" asp-route-id="@Model.LatestBlogs[i].Id">@Model.LatestBlogs[i].Title</a></div><div class="col-4"><div class="d-flex justify-content-end"> <a class="btn btn-warning" asp-action="BlogUpdate2" asp-controller="Admin" asp-route-blogId="@Model.LatestBlogs[i].Id">Düzenle</a><a class="btn btn-danger" asp-action="RemoveBlog" asp-controller="Admin" asp-route-blogId="@Model.LatestBlogs[i].Id">Sil</a></div></div> </div></li>
+					<li class="p-2" style="width:100%; @(i % 2 == 0 ? "":"background-color:#c0f5ff75") "><div class="row"><div class="col-8" style="overflow: hidden"> <a class="" style="overflow: hidden" asp-action="Detail" asp-controller="Home" asp-route-id="@Model.LatestBlogs[i].Id">@Model.LatestBlogs[i].Title</a></div><div class="col-4"><div class="d-flex justify-content-end"> <a class="btn btn-dark " asp-action="BlogUpdate" asp-controller="Admin" asp-route-blogId="@Model.LatestBlogs[i].Id">Düzenle</a><a style="background-color:white" class="btn btn-outline-dark  ml-2" asp-action="BlogRemove" asp-controller="Admin" asp-route-blogId="@Model.LatestBlogs[i].Id">Sil</a></div></div> </div></li>
 				}
 			</ul>
 		</div>
@@ -23,7 +23,7 @@
 			<ul class="list-unstyled">
 				@for (int i = 0; i < Model.BlogsOrderedById.Count; i++)
 				{
-					<li class="" style="width:100%;"><div class="row"><div class="col-8" style="overflow: hidden"> <a class="" style="overflow: hidden" asp-action="Detail" asp-controller="Home" asp-route-id="@Model.BlogsOrderedById[i].Id">@Model.BlogsOrderedById[i].Title</a></div><div class="col-4"><div class="d-flex justify-content-end"> <a class="btn btn-warning" asp-action="BlogUpdate2" asp-controller="Admin" asp-route-blogId="@Model.BlogsOrderedById[i].Id">Düzenle</a><a class="btn btn-danger" asp-action="RemoveBlog" asp-controller="Admin" asp-route-blogId="@Model.BlogsOrderedById[i].Id">Sil</a></div></div> </div></li>
+					<li class="p-2" style="width:100%;@(i % 2 == 0 ? "":"background-color:#c0f5ff75")"><div class="row"><div class="col-8" style="overflow: hidden"> <a class="" style="overflow: hidden" asp-action="Detail" asp-controller="Home" asp-route-id="@Model.BlogsOrderedById[i].Id">@Model.BlogsOrderedById[i].Title</a></div><div class="col-4"><div class="d-flex justify-content-end"> <a class="btn btn-dark" asp-action="BlogUpdate" asp-controller="Admin" asp-route-blogId="@Model.BlogsOrderedById[i].Id">Düzenle</a><a style="background-color:white" class="btn btn-outline-dark ml-2" asp-action="BlogRemove" asp-controller="Admin" asp-route-blogId="@Model.BlogsOrderedById[i].Id">Sil</a></div></div> </div></li>
 				}
 			</ul>
 		</div>
@@ -33,3 +33,9 @@
 <div class="d-flex justify-content-center mt-5">
 	<a class="btn btn-dark text-white" style="width:15%" asp-action="Create" asp-controller="Home">Blog Oluştur<span class="sr-only">(current)</span></a>
 </div>
+
+<script>
+
+
+
+</script>

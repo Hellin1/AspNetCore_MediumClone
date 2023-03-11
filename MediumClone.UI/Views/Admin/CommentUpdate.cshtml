@@ -1,0 +1,17 @@
+﻿@model CommentUpdateDto
+@{
+	Layout = "_LayoutAdmin";
+}
+
+
+<div class="container">
+	<form asp-action="CommentUpdate" asp-controller="Admin" method="post">
+		<input type="hidden" asp-for="@Model.Id" />
+		<input type="text" asp-for="@Model.Content" class="form-control" />
+		<input type="submit" class="btn btn-dark mt-2" value="Güncelle" />
+	</form>
+
+
+</div>
+
+
