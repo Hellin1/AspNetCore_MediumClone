@@ -20,7 +20,7 @@
       "dotnetRunMessages": "true",
       "launchBrowser": true,
         "applicationUrl": "http://localhost:5000",
-      "launchUrl": "admin",
+      "launchUrl": "admin/blogs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

@@ -20,8 +20,8 @@ namespace MediumClone.DataAccess.Configurations
             builder.Property(x => x.Content).HasColumnType("text");
 
 
-            builder.HasMany(x => x.BlogCategories).WithOne(x => x.Blog).HasForeignKey(x => x.BlogId);
-            builder.HasMany(x => x.Comments).WithOne(x => x.Blog).HasForeignKey(x => x.BlogId).OnDelete(DeleteBehavior.NoAction);
+            //builder.HasMany(x => x.BlogCategories).WithOne(x => x.Blog).HasForeignKey(x => x.BlogId);
+            builder.HasMany(x => x.Comments).WithOne(x => x.Blog).HasForeignKey(x => x.BlogId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

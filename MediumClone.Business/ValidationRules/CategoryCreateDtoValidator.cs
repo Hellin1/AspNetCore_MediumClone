@@ -11,8 +11,8 @@ namespace MediumClone.Business.ValidationRules
     public class CategoryCreateDtoValidator : AbstractValidator<CategoryCreateDto>
     {
         public CategoryCreateDtoValidator()
-        { // gonna change
-
+        {
+            RuleFor(x => x.Title).NotEmpty();
         }
     }
 }

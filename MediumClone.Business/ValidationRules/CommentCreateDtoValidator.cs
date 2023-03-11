@@ -11,9 +11,9 @@ namespace MediumClone.Business.ValidationRules
     public class CommentCreateDtoValidator : AbstractValidator<CommentCreateDto>
     {
         public CommentCreateDtoValidator()
-        { // gonna change
-            //RuleFor(x => x.BlogId).NotEmpty();
+        {
             RuleFor(x => x.Content).NotEmpty();
+            //RuleFor(x => x.BlogId).NotEmpty();
             //RuleFor(x => x.UserId).NotEmpty();
         }
     }

@@ -11,8 +11,7 @@ namespace MediumClone.Business.ValidationRules
     public class BlogHomePageDtoValidator : AbstractValidator<BlogHomePageDto>
     {
         public BlogHomePageDtoValidator()
-        { // gonna change
-
+        {
         }
     }
 }

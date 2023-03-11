@@ -11,8 +11,9 @@ namespace MediumClone.Business.ValidationRules
     public class AppUserSignInDtoValidator : AbstractValidator<AppUserSignInDto>
     {
         public AppUserSignInDtoValidator()
-        { // gonna change
-
+        {
+            RuleFor(x => x.Username).NotEmpty();
+            RuleFor(x => x.Password).NotEmpty();
         }
     }
 }

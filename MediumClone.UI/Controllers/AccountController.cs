@@ -1,5 +1,6 @@
 ﻿using MediumClone.Dtos.NlogDtos;
 using MediumClone.Entities.Domains;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,11 +21,12 @@ namespace MediumClone.UI.Controllers
             _roleManager = roleManager;
         }
 
+        [AllowAnonymous]
         public IActionResult SignIn()
         {
             return View(new AppUserSignInDto());
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> SignIn(AppUserSignInDto dto)
         {
@@ -63,18 +65,22 @@ namespace MediumClone.UI.Controllers
             return View(dto);
 
         }
-        
+
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
+
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View(new AppUserCreateDto());
         }
 
+
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(AppUserCreateDto dto)
         {
@@ -85,10 +91,23 @@ namespace MediumClone.UI.Controllers
                     Email = dto.Email,
                     UserName = dto.Username
                 };
+
+                if (!await _roleManager.RoleExistsAsync("Member"))
+                {
+                    var role = new AppRole { Name = "Member" };
+                    var result = await _roleManager.CreateAsync(role);
+                }
+                if (!await _roleManager.RoleExistsAsync("Admin"))
+                {
+                    var role = new AppRole { Name = "Admin" };
+                    var result = await _roleManager.CreateAsync(role);
+                }
+
                 var identityResult = await _userManager.CreateAsync(user, dto.Password);
                 if (identityResult.Succeeded)
                 {
                     await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
+                    var result = await _userManager.AddToRoleAsync(user, "Member");
                     return RedirectToAction("Index", "Home");
                 }
                 foreach (var error in identityResult.Errors)

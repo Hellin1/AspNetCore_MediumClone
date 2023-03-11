@@ -10,7 +10,6 @@ namespace MediumClone.Entities.Domains
 	{
         public string Title { get; set; }
 
-        // navigation props
         public List<BlogCategory> BlogCategories { get; set; }
     }
 }

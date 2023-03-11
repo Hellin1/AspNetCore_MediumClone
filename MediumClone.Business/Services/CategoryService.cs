@@ -31,8 +31,6 @@ namespace MediumClone.Business.Services
 
         public IResponse<List<CategoryListDto>> GetSearchResult(string searchWord)
         {
-            //var context.MyTable.Where(x => EF.Functions.ILike(x.Name, $"%{searchWord}%")).ToList();
-
             var categorySearchResult =  _uow.GetRepository<Category>().GetQuery().Where(x => EF.Functions.Like(x.Title, $"%{searchWord}%")).ToList();
 
             var dto = _mapper.Map<List<CategoryListDto>>(categorySearchResult);
@@ -43,27 +41,6 @@ namespace MediumClone.Business.Services
 
         public IResponse<List<BlogListDto>> GetBlogsByCategory(int categoryId)
         {
-            //    //var blogs = _uow.GetRepository<Blog>().GetQuery().Where(x => x.BlogCategories).Include(x => x.BlogCategories).ThenInclude(x => x.Category);
-
-
-            //    //var blogs = _uow.GetRepository<Blog>().GetQuery().Include(x => x.BlogCategories).ThenInclude(x => x.CategoryId).Where(x => x.CategoryId == categoryId);
-
-            //    //return await Response<Blog>();
-
-            //var blogs = _uow.GetRepository<Category>().GetQuery().Include(x => x.BlogCategories).ThenInclude(x => x.Blog).FirstOrDefault(x => x.Id == categoryId);
-            //var blogs2 = _uow.GetRepository<Category>().GetQuery().Include(x => x.BlogCategories).ThenInclude(x => x.Blog).SingleOrDefault(x => x.Id == categoryId);
-            //var blog3 = _uow.GetRepository<Category>().GetQuery().Join();
-
-        //    context.Categories
-        //.Where(c => c.Id == categoryId)
-        //.SelectMany(c => c.BlogCategories)
-        //.Select(bc => bc.Blog)
-        //.ToList();
-
-            //var blogs4 = _uow.GetRepository<Category>().GetQuery().Include(x => x.BlogCategories).ThenInclude(x => x.Blog).Where(x => x.Category.Id == categoryId).FirstOrDefault();
-
-
-            // pagination need
 
             var blogs5 = _uow.GetRepository<Category>().GetQuery().Where(x => x.Id == categoryId).SelectMany(x => x.BlogCategories).Select(x => x.Blog).ToList();
 

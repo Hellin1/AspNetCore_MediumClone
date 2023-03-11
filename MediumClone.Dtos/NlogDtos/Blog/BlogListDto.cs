@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 namespace MediumClone.Dtos.NlogDtos
 {
     public class BlogListDto : IDto
-    { // gonna change
+    { 
         public int Id { get; set; }
 
         public string Title { get; set; }
+
         public string Content { get; set; }
 
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public DateTime CreatedTime { get; set; }
 
         public DateTime? UpdatedTime { get; set; }
 

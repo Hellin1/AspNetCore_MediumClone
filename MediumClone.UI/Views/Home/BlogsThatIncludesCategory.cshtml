@@ -5,8 +5,17 @@
 <h3 class="mt-5 ml-3">@ViewBag.Category.Title</h3>
 
 
-@if (Model.Count < 1){
-	<p>Bu kategoride yazılmış blog bulunmamaktadır.</p>
+@if (Model.Count < 1)
+{
+	<div class="container">
+		<article class="border-top  py-3 mt-2">
+			<div class="row">
+				<div class="col-7">
+					<h5 style="word-break: break-word;">Bu kategoride yazılmış blog bulunmamaktadır.</h5>
+				</div>
+			</div>
+		</article>
+	</div>
 }
 
 

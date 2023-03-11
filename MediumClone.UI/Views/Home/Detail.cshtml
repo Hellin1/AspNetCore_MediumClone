@@ -21,23 +21,20 @@
 					<ul>
 						@foreach (var item in Model.Comments)
 						{
-
 							<li>
 								<p>@item.AppUser.UserName</p>
-
 								<p class="lead">
 									@item.Content
 								</p>
 							</li>
 						}
-
 					</ul>
 				}
 				else
 				{
 					<span>Yorum Yapılmamış</span>
 				}
-				@*dto su hazırlanıcak*@
+				
 				@if (User.Identity.IsAuthenticated)
 				{
 					<h6 class="mt-5">Yorum Yap</h6>
@@ -46,7 +43,7 @@
 						<input type="text" name="Content" />
 						<input type="hidden" name="UserId" value="@Model.AppUserId" />
 						<input type="hidden" name="BlogId" value="@Model.Id" />
-						<input type="submit" class="btn btn-primary mt-1" />
+						<input type="submit" class="btn btn-primary mt-1" value="Yorum Yap"/>
 					</form>
 				}
 				else
@@ -58,10 +55,10 @@
 
 			</div>
 
-			<!-- Button trigger modal -->
+			@*<!-- Button trigger modal -->
 			<button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
 				Yorum Yap
-			</button>
+			</button>*@
 
 			<!-- Modal -->
 			<div class="modal fade bg-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,11 +84,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
-
 		</div>
 	</div>
 </div>

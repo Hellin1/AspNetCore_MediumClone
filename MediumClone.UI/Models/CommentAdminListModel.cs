@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediumClone.Entities.Domains;
+using System;
 
-namespace MediumClone.Entities.Domains
+namespace MediumClone.UI.Models
 {
-    public class Comment : BaseEntity
+    public class CommentAdminListModel
     {
+        public int Id { get; set; }
+
         public string Content { get; set; }
 
         public int UserId { get; set; }
 
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public DateTime CreatedTime { get; set; }
 
         public DateTime? UpdatedTime { get; set; }
 
         public int BlogId { get; set; }
 
         public Blog Blog { get; set; }
-        
+
         public int AppUserId { get; set; }
 
         public AppUser AppUser { get; set; }
+
     }
 }

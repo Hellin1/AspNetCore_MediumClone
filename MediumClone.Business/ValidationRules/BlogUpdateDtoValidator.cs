@@ -11,8 +11,11 @@ namespace MediumClone.Business.ValidationRules
     public class BlogUpdateDtoValidator : AbstractValidator<BlogUpdateDto>
     {
         public BlogUpdateDtoValidator()
-        { // gonna change
-
+        { 
+            RuleFor(x => x.Id).NotEmpty();
+            RuleFor(x => x.AppUserId).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Content).NotEmpty();
         }
     }
 }

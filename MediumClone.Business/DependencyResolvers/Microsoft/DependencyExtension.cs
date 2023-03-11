@@ -8,6 +8,7 @@ using MediumClone.DataAccess.Contexts;
 using MediumClone.DataAccess.UnitOfWork;
 using MediumClone.Dtos.NlogDtos;
 using MediumClone.Entities.Domains;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,16 +31,6 @@ namespace MediumClone.Business.DependencyResolvers.Microsoft
 				opt.UseSqlServer(configuration.GetConnectionString("Local"));
 				opt.LogTo(Console.WriteLine, LogLevel.Information);
 			});
-			//var mapperConfiguration = new MapperConfiguration(opt =>
-			//{
-			//	opt.AddProfile(new BlogProfile());
-			//	opt.AddProfile(new CategoryProfile());
-			//	opt.AddProfile(new CommentProfile());
-			//});
-
-			//var mapper = mapperConfiguration.CreateMapper();
-			//services.AddSingleton(mapper);
-
 
 			services.AddIdentity<AppUser, AppRole>(opt =>
 			{
@@ -50,7 +41,18 @@ namespace MediumClone.Business.DependencyResolvers.Microsoft
 				opt.Password.RequireNonAlphanumeric = false;
 			}).AddEntityFrameworkStores<NlogContext>();
 
-			services.AddTransient<IValidator<BlogCreateDto>, BlogCreateDtoValidator>();
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.SameSite = SameSiteMode.Strict;
+                opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                opt.Cookie.Name = "NlogCookie";
+                opt.ExpireTimeSpan = TimeSpan.FromDays(25);
+                opt.LoginPath = new PathString("/Account/SignIn");
+                opt.AccessDeniedPath = new PathString("/Account/SignIn");
+            });
+
+            services.AddTransient<IValidator<BlogCreateDto>, BlogCreateDtoValidator>();
 			services.AddTransient<IValidator<BlogUpdateDto>, BlogUpdateDtoValidator>();
 			services.AddTransient<IValidator<CategoryCreateDto>, CategoryCreateDtoValidator>();
 			services.AddTransient<IValidator<CategoryUpdateDto>, CategoryUpdateDtoValidator>();
@@ -61,9 +63,6 @@ namespace MediumClone.Business.DependencyResolvers.Microsoft
 			services.AddTransient<IBlogService, BlogService>();
 			services.AddScoped<ICommentService, CommentService>();
 			services.AddScoped<ICategoryService, CategoryService>();
-
-			//services.AddTransient<IValidator<AppUserCreateDto> AppUserCreateDtoValidator>();	
-
 		}
 	}
 }

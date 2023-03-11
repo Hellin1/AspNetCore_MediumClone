@@ -32,11 +32,7 @@ namespace MediumClone.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var blogList = await _blogService.GetAll();
-            //var blogs = await _blogService.GetRelationalBlog();
-
             var homePage = await _blogService.GetAllHomePage();
-
 
             return View(homePage);
         }
@@ -46,13 +42,13 @@ namespace MediumClone.UI.Controllers
 
             var blogCreateDto = new BlogCreateDto();
             var blogCategories = new List<BlogCategory>();
-            var categories = await _blogService.GetAllCategory();
+            var categories = await _categoryService.GetAllAsync();
             var categories2 = new List<CategoryListDto>()
             {
 
             };
 
-            foreach (var category in categories)
+            foreach (var category in categories.Data)
             {
                 categories2.Add(new()
                 {
@@ -61,25 +57,17 @@ namespace MediumClone.UI.Controllers
                 });
             }
 
-            //foreach (var category in categories)
-            //{
-            //    blogCategories.Add(new BlogCategory()
-            //    {
-            //        CategoryId = category.Id
-            //    });
-            //}
-            //blogCreateDto.BlogCategories = blogCategories;
+           
 
             blogCreateDto.Categories = categories2;
-            //blogCreateDto.AppUserId = ;
+
 
             return View(blogCreateDto);
         }
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(BlogCreateDto dto)
-        { // giriş yapma olmadığı için user a ulaşamayıp patlıyor
-            //var user = await _userManager.Users.SingleOrDefaultAsync(x => x.Id == dto.AppUserId); 
+        { 
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             dto.AppUserId = userId;
             await _blogService.Create(dto);
@@ -93,14 +81,14 @@ namespace MediumClone.UI.Controllers
             var blog = await _blogService.GetRelationalDataById(id);
             return View(blog);
         }
-
-        public IActionResult CreateCategory()
+        [Authorize]
+        public IActionResult CategoryCreate()
         {
             return View(new CategoryCreateDto());
         }
 
 
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CommentCreate(CommentCreateDto dto)
         {
@@ -134,8 +122,5 @@ namespace MediumClone.UI.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
-
     }
 }

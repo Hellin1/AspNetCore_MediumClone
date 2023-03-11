@@ -1,17 +1,15 @@
-﻿@model BlogUpdateDto
+﻿@model BlogAdminUpdateModel
 @{
 	Layout = "_LayoutAdmin";
 }
 
 
-
-
 <div class="container">
-	<form method="post" asp-action="BlogUpdate2" asp-controller="Admin" class="py-5">
+	<form method="post" asp-action="BlogUpdate" asp-controller="Admin" class="py-5">
 		<input type="hidden" name="AppUserId" value="@Model.AppUserId" />
 		<input type="hidden" asp-for="@Model.Id" />
 		<label>Title</label>
-		<input type="text" name="title" class="form-control" />
+		<input type="text" name="title" class="form-control" value="@Model.Title" />
 		<br />
 		<label>Content</label>
 		<textarea type="text" asp-for="@Model.Content" style="height: 60vh" class="form-control" text-wrap:normal>
@@ -25,6 +23,8 @@
 
 			}
 		</select>
+
+		
 
 		<div asp-validation-summary="ModelOnly" class="text-danger my-2"></div>
 		<input type="submit" class="btn btn-primary mt-2" value="Yayınla" />
@@ -42,6 +42,6 @@
 	</script>
 }
 
-	@section css{
+@section css{
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.26.0/ui/trumbowyg.min.css" integrity="sha512-Zi7Hb6P4D2nWzFhzFeyk4hzWxBu/dttyPIw/ZqvtIkxpe/oCAYXs7+tjVhIDASEJiU3lwSkAZ9szA3ss3W0Vug==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }

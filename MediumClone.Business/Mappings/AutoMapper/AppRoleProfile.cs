@@ -12,7 +12,7 @@ namespace MediumClone.Business.Mappings.AutoMapper
     public class AppRoleProfile : Profile
     {
         public AppRoleProfile()
-        { // gonna change
+        { 
             CreateMap<AppUser, AppUserCreateDto>().ReverseMap();
             CreateMap<AppUser, AppUserSignInDto>().ReverseMap();
         }

@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediumClone.Business.DependencyResolvers.Microsoft;
 using MediumClone.Business.Helpers;
+using MediumClone.UI.Mappings.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,7 @@ namespace MediumClone.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 
-        // neden?
+        
         public IConfiguration Configuration { get; set; }
 
         public Startup(IConfiguration configuration)
@@ -31,12 +32,13 @@ namespace MediumClone.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
-        //                          neden?
+        
             services.AddDependencies(Configuration);
             services.AddControllersWithViews();
 
             var profiles = ProfileHelper.GetProfiles();
-            // ui dan gelecek profile lar profiles a eklenicek
+            profiles.Add(new CommentModelProfile());
+            profiles.Add(new BlogModelProfile());
 
             var configuration = new MapperConfiguration(opt =>
             {

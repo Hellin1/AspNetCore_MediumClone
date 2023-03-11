@@ -36,8 +36,6 @@ namespace MediumClone.DataAccess.Repositories
             return asNoTracking ? await _context.Set<T>().SingleOrDefaultAsync(filter) : await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        //public async Task<T> GetByFilter 
-
         public async Task<T> GetById(object id)
         {
             return await _context.Set<T>().FindAsync(id);
@@ -50,6 +48,7 @@ namespace MediumClone.DataAccess.Repositories
 
         public void Update(T entity, T unchanged)
         {
+          
             //_context.Set<T>().Update(entity);
             _context.Entry(unchanged).CurrentValues.SetValues(entity);
         }

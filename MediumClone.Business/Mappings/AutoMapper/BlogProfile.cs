@@ -17,6 +17,7 @@ namespace MediumClone.Business.Mappings.AutoMapper
             CreateMap<Blog, BlogHomePageDto>().ReverseMap();
             CreateMap<Blog, BlogListDto>().ReverseMap();
             CreateMap<Blog, BlogUpdateDto>().ReverseMap();
+            CreateMap<BlogListDto, BlogUpdateDto>().ReverseMap();
         }
     }
 }
